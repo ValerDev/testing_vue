@@ -1,0 +1,296 @@
+@import '../helpers/_colors'
+
+body
+  margin: 0
+
+#product-wrapper
+  background-color: $main-background
+  padding: 2em
+  display: flex
+  h2
+    font-size: 20px
+    margin: 0
+    color: $main-color
+    font-weight: 200
+    margin-bottom: 1rem
+  h5
+    margin-bottom: .5em
+  .header-part
+    display: flex
+    justify-content: space-between
+    width: max-content
+  .details
+    display: flex
+    flex-direction: column
+    margin-top: 2em
+    width: 45%
+    .process
+      position: relative
+    .el-select
+      width: 150px
+      .el-input__suffix
+        right: unset
+        left: 0
+        i
+          margin-top: .3rem
+          &::before
+            content: '+'
+      input
+        padding: .5rem 0 .5rem 1.5rem
+        background-color: $white
+        color: $main-color
+        border: none
+        height: 50%
+    .is-focus
+      .el-select__caret.is-reverse
+        transform: rotateZ(180deg)
+    .label-select
+      margin-left: 1rem
+      background-color: $label-color
+      color: $white
+      font-size: 12px
+    .added-label__inner
+        display: flex
+        justify-content: space-between
+        align-items: center
+        width: 50%
+        font-size: 10px
+        .added-label__el
+          padding:  .24rem 1rem
+          color: $white
+          display: block
+          background-color: $white
+          width: 33%
+          margin-right: .5rem
+          border-radius: 5px
+          &:first-child
+            background-color: $light-green
+          &:nth-child(2)
+            background-color: $main-color
+          &:nth-child(3)
+            background-color: $green
+          &:last-child
+            background-color: $label-color
+    .detail__color
+      width: 100%
+      background-color: $white
+      display: flex
+      box-shadow: 5px 5px 20px 2px #9e9c9c
+      border-radius: 8px
+      h4
+        color: $main-color
+        margin: 0em 0 .5em
+      .color-pick__row
+        padding: 2em
+        display: flex
+        background-color: #efefef
+        width: 250px
+        flex-basis: 50%
+        flex-wrap: wrap
+        &:last-child
+          flex-direction: column
+          .color-pick__inner
+            overflow: auto
+            height: 196px
+        .color-pick__el
+          width: 50px
+          height: 50px
+          display: flex
+          align-items: center
+          justify-content: center
+          .el-icon-circle-plus
+            display: none
+          &:hover
+            .el-icon-circle-plus
+              display: inline-flex
+        .picked-color__row
+          display: flex
+          justify-content: space-between
+          width: 100%
+          .picked-color__el
+            width: 50px
+            height: 50px
+    .el-button
+      padding: .3em
+      transition: .2s
+      &:hover
+        display: inline-block
+        line-height: 1
+        white-space: nowrap
+        cursor: pointer
+        background: rgba(100, 100, 100, .6 )
+        border: 1px solid #DCDFE6
+        color: #fff
+        -webkit-appearance: none
+        text-align: center
+        box-sizing: border-box
+        outline: 0
+        font-weight: 500
+        border-radius: 4px
+    .add-season__block
+      width: 48%
+      .added-season__inner
+        display: flex
+        justify-content: space-between
+        align-items: center
+        width: 50%
+        font-size: 10px
+        .added-season__el
+          padding:  .2rem 1rem
+          border: 1px solid $main-color
+          color: $main-color
+          display: block
+          background-color: $white
+          width: 33%
+          margin-right: .5rem
+          border-radius: 5px
+          &:nth-child(2)
+            border: 1px solid $yellow
+          &:last-child
+            border: 1px solid $grey
+            padding: .2rem
+      span
+        font-size: 12px      
+    .types
+      margin-top: 3rem
+      display: flex
+      justify-content: space-between
+      h5
+        color: $heading5
+        text-transform: uppercase
+        font-size: .89rem
+        font-weight: bold
+      .detail-button
+        background-color: white
+        color: $main-color
+        border: 1px dashed $main-color
+        height: 50px
+        width: 150px
+        padding-top: 0.5em
+        span
+          display: flex
+          justify-content: center
+          align-items: center
+          img
+            margin-right: .5em
+            max-width: 20%
+    .shopping.details
+      width: 100%
+      justify-content: space-between
+      flex-direction: row
+      .shopping__row
+        display: flex
+        align-items: center
+        justify-content: space-between
+        width: 45%
+        .little-icon
+          flex-basis: 10%
+        .detail-button
+          background-color: white
+          color: $main-color
+          border: 1px dashed $main-color
+          height: 50px
+          width: 200px
+          span
+            display: flex
+            justify-content: center
+            align-items: center
+            img
+              margin-right: .5em
+              max-width: 18%
+    .description
+      .detail-button
+        background-color: white
+        color: $main-color
+        border: 1px dashed $main-color
+        height: 70px
+        width: 100%
+        span
+          display: flex
+          justify-content: center
+          align-items: center
+          height: 100%
+          img
+            margin-right: .5em
+            max-width: 5%
+    .pick-control
+      display: flex
+      justify-content: space-around
+      .el-button
+        border: 1px solid $main-color
+        padding: .3em 2.5em .5em
+        display: flex
+        align-items: center
+        border-radius: 12px
+        &:last-child
+          background-color: $main-color
+          color: $white
+.el-select-dropdown
+  display: none
+.choose-proccess
+  .el-dialog
+    width: 50%!important
+    height: 35%
+
+
+.flags
+  display: flex
+  flex-direction: column
+  align-items: start
+  margin-right: 2em
+  justify-content: space-between
+  .flags-more-block
+    align-self:  center  
+    span
+      font-size: 9px
+      color: $main-color
+  .flag-block
+    display: flex
+    align-items: center
+    justify-content: start
+    padding: .3em 
+    img
+      width: 30px
+      height: 15px
+      padding: 0 .2em
+
+.contentAddPricing
+  display: flex
+  justify-content: space-between
+  align-items: center
+  .mathSign
+    color: $main-color
+    font-size: 30px
+    font-weight: 800
+  .addPricingBlock
+    display: flex
+    justify-content: center
+    align-items: center
+    padding: 0 1em
+    flex-direction: column
+    align-items: center
+    position: relative
+    .switch
+      width: 12px
+      height: 12px
+      position: absolute
+      right: 25%
+      top: 0
+    img
+      width: 20px
+      height: 20px
+      padding: .3em 0
+    span
+      padding: .1em 0
+      text-align: center
+    .price
+      font-size: 18px
+    .info
+      font-size: 9px
+      color: $main-color
+
+.add-label__block
+  div
+    height: 100%
+    button
+      height: 100%
