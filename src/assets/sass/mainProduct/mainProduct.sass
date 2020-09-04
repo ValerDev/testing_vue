@@ -7,6 +7,8 @@ body
   background-color: $main-background
   padding: 2em
   display: flex
+  height: 100vh
+  align-items: center
   h2
     font-size: 20px
     margin: 0
@@ -55,14 +57,17 @@ body
         align-items: center
         width: 50%
         font-size: 10px
+        margin-left: 2em
         .added-label__el
-          padding:  .24rem 1rem
+          padding: 0 1rem
           color: $white
-          display: block
+          display: inline-flex
           background-color: $white
           width: 33%
           margin-right: .5rem
           border-radius: 5px
+          align-items: center
+          justify-content: center
           &:first-child
             background-color: $light-green
           &:nth-child(2)
@@ -87,6 +92,8 @@ body
         width: 250px
         flex-basis: 50%
         flex-wrap: wrap
+        &:first-child
+          height: 250px
         &:last-child
           flex-direction: column
           .color-pick__inner
@@ -216,9 +223,10 @@ body
     .pick-control
       display: flex
       justify-content: space-around
+      margin-top: 1em
       .el-button
         border: 1px solid $main-color
-        padding: .3em 2.5em .5em
+        padding: .5em 2.5em .7em
         display: flex
         align-items: center
         border-radius: 12px
@@ -240,7 +248,7 @@ body
   margin-right: 2em
   justify-content: space-between
   .flags-more-block
-    align-self:  center  
+    align-self: center
     span
       font-size: 9px
       color: $main-color
@@ -294,3 +302,14 @@ body
     height: 100%
     button
       height: 100%
+.picked-colors__inner
+  display: flex
+  justify-content: flex-start
+  flex-wrap: wrap
+  width: 65%
+  .pickedColor
+    padding: .3em 1em
+    color: $white
+    border-radius: 12px
+    margin-right: .4em
+    margin-bottom: .5em

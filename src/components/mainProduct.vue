@@ -28,7 +28,7 @@
               + Add Label
             </el-button>
           </div>
-          <div v-else-if="isAddedLabel" >
+          <div v-else-if="!sAddedLabel" >
             <div class="added-label__inner">
               <div class="added-label__el">Core</div>
               <div class="added-label__el">Waterproof</div>
@@ -49,13 +49,14 @@
                   <span>Add</span>
                 </el-button>
               </div>
-              <div v-else class="block detail__color">
+              <div v-else-if="pickColor && !showPickedColorsBlock" class="block detail__color">
                 <div class="color-pick__row">
                   <div
                     v-for="(color, i) in colors"
                     :key="i" class="color-pick__el"
-                    :style="'background-color:' + color"
-                    :background='color'
+                    :style="'background-color:' + color.color"
+                    :background='color.color'
+                    :name='color.name'
                     ref="addColor"
                     @click="addColor"
                   >
@@ -70,21 +71,26 @@
                       :key='i'
                       class="picked-color__row"
                     >
-                      <div class="picked-color__el" :style="'background-color:' + pickedColor" ></div>
+                      <div class="picked-color__el" :style="'background-color:' + pickedColor.color" ></div>
                       <div class="picked-color_del" @click="pickedColors.splice(i,1)"><i class="el-icon-delete"></i></div>
                     </div>
                   </div>
                   <div class="pick-control">
                     <el-button class="cancel-pick" icon='el-icon-circle-close' @click='pickColor = false'>Cancel</el-button>
-                    <el-button class="save-pick" icon='el-icon-s-order'  @click='pickColor = false'>Save</el-button>
+                    <el-button class="save-pick" icon='el-icon-s-order'  @click='showPickedColors'>Save</el-button>
                   </div>
+                </div>
+              </div>
+              <div v-if='showPickedColorsBlock' class="picked-colors__inner">
+                <div v-for="(color,i) in pickedColors" :key="i" class="pickedColor" :style="color.name ==='White' ? 'color:grey; background-color:white' : 'background-color:' + color.color">
+                  <span>{{color.name}}</span>
                 </div>
               </div>
             </template>
           </div>
         </div>
       </div>
-      <div class="shopping details">
+            <div class="shopping details">
         <div class="shopping__row first--shopping__row">
           <div class="little-icon ">
             <img src="../assets/img/icons/supplier-large.svg" />
@@ -157,41 +163,126 @@ export default {
     return {
       secondStep: false,
       isAddedLabel: false,
-      isAddPricing: true,
-      isAddedSupplier: true,
       pickColor: false,
       showColor: true,
+      showPickedColorsBlock: false,
+      isAddPricing: true,
+      isAddedSupplier: true,
       colors: [
-        '#ffffff',
-        '#9e9c9c',
-        '#696969',
-        '#474747',
-        '#000000',
-        '#e43434',
-        '#690707',
-        '#d1cb73',
-        '#dab220',
-        '#817505',
-        '#20d83d',
-        '#165820',
-        '#0da53f',
-        '#30c8f7',
-        '#0e3c4e',
-        '#1a2268',
-        '#063156',
-        '#c463d0',
-        '#ca1bbc',
-        '#550741',
-        '#be8228',
-        '#68430b',
-        '#07f170',
-        '#2a5f42',
-        '#0f3f25'
+        {
+          name: 'White',
+          color: '#ffffff'
+        },
+        {
+          name: 'Light Grey',
+          color: '#9e9c9c'
+        },
+        {
+          name: 'Grey',
+          color: '#696969'
+        },
+        {
+          name: 'Dark Grey',
+          color: '#474747'
+        },
+        {
+          name: 'Black',
+          color: '#000000'
+        },
+        {
+          name: 'Scarlet',
+          color: '#e43434'
+        },
+        {
+          name: 'Maroon',
+          color: '#690707'
+        },
+        {
+          name: 'Smooth Yellow',
+          color: '#d1cb73'
+        },
+        {
+          name: 'Yellow',
+          color: '#dab220'
+        },
+        {
+          name: 'Dark Yellow',
+          color: '#817505'
+        },
+        {
+          name: 'Light Green',
+          color: '#20d83d'
+        },
+        {
+          name: 'Dark Green',
+          color: '#165820'
+        },
+        {
+          name: 'Green',
+          color: '#0da53f'
+        },
+        {
+          name: 'Light Skyblue',
+          color: '#30c8f7'
+        },
+        {
+          name: 'Dark Skyblue',
+          color: '#0e3c4e'
+        },
+        {
+          name: 'Dark Blue',
+          color: '#1a2268'
+        },
+        {
+          name: 'Blue',
+          color: '#063156'
+        },
+        {
+          name: 'Violet',
+          color: '#c463d0'
+        },
+        {
+          name: 'Purple',
+          color: '#ca1bbc'
+        },
+        {
+          name: 'Dark Purple',
+          color: '#550741'
+        },
+        {
+          name: 'Light Orange',
+          color: '#be8228'
+        },
+        {
+          name: 'Dark Orange',
+          color: '#68430b'
+        },
+        {
+          name: 'Neon Green',
+          color: '#07f170'
+        },
+        {
+          name: 'Neon Dark Green',
+          color: '#2a5f42'
+        },
+        {
+          name: ' Dark Green',
+          color: '#0f3f25'
+        }
       ],
       pickedColors: [
-        '#0e3c4e',
-        '#1a2268',
-        '#063156'
+        {
+          name: ' Dark Green',
+          color: '#0f3f25'
+        },
+        {
+          name: 'Light Orange',
+          color: '#be8228'
+        },
+        {
+          name: 'Violet',
+          color: '#c463d0'
+        }
       ]
     }
   },
@@ -200,10 +291,17 @@ export default {
       const pickTheColor = this.$refs.addColor
       pickTheColor.forEach(el => {
         el.onclick = (e) => {
-          this.pickedColors.push(el.attributes.background.value)
+          this.pickedColors.push({
+            name: el.attributes.name.value,
+            color: el.attributes.background.value
+          })
+          console.log(this.$refs.addColor)
         }
-        console.log(pickTheColor)
       })
+    },
+    showPickedColors () {
+      this.showPickedColorsBlock = true
+      this.pickColor = true
     }
   }
 }
